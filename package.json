@@ -1,0 +1,27 @@
+{
+  "name": "studybuddy",
+  "version": "1.0.0",
+  "description": "For students of all ages who would like to study for a class or upcoming assessment. StudyBuddy is a mobile application that provides an effective, entertaining and interactive way of reviewing material. Unlike Quizlet, Chegg, and other leading study apps our product is fully customizable and allows users to follow study guides tailored to their learning style.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test-dashboard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmejia36/StudyBuddy.git"
+  },
+  "keywords": [
+    "Study",
+    "School",
+    "Education",
+    "Mobile",
+    "Desktop",
+    "Interactive"
+  ],
+  "author": "Rodrigo Mejia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rmejia36/StudyBuddy/issues"
+  },
+  "homepage": "https://github.com/rmejia36/StudyBuddy#readme"
+}
