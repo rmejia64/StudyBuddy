@@ -1,11 +1,19 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { Pressable } from "react-native";
 
 export function Button(props) {
-  const { onPress, title = "Enter" } = props;
+  const { onPress, title, color, show } = props;
   return (
-    <Pressable style={styles.button} onPress={onPress}>
+    <Pressable
+      onPress={onPress}
+      style={[
+        styles.button,
+        {
+          display: show ? "block" : "none",
+          backgroundColor: color ? "red" : "blue",
+        },
+      ]}
+    >
       <Text style={styles.button_text}>{title}</Text>
     </Pressable>
   );
@@ -13,7 +21,6 @@ export function Button(props) {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "blue",
     width: 200,
     height: 75,
     borderRadius: "50%",

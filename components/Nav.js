@@ -1,16 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { Component } from "react";
-// import { Button } from "./Button";
+import React from "react";
 
-export class Nav extends Component {
-  render() {
-    return (
-      <View style={styles.navbar}>
-        <Text style={styles.nav_text}>~ Navbar here ~</Text>
-        {/* <Button /> */}
-      </View>
-    );
-  }
+export function Nav(props) {
+  const { show } = props;
+
+  return (
+    <View style={[{ display: show ? "block" : "none" }, styles.navbar]}>
+      <Text style={[{}, styles.nav_text]}>~ Navbar here ~</Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

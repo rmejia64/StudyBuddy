@@ -1,58 +1,68 @@
+// Rodrigo Mejia
+// COEN 174
+// StudyBuddy
+// 2022
+
+//++++++++++++++++imports+++++++++
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useState } from "react";
-import { Button } from "/Users/reegz/Documents/coen/coen174 - software engineering/group project/StudyBuddy/components/Button.js";
-import { Nav } from "/Users/reegz/Documents/coen/coen174 - software engineering/group project/StudyBuddy/components/Nav.js";
+import { Button } from "./components/Button.js";
+import { Title } from "./components/Title.js";
+import { Login } from "./components/Login.js";
+import { Header } from "./components/Header.js";
+import { Content } from "./components/Content.js";
+//++++++++++++++++
 
 export default function App() {
+  console.log("loading...");
+
+  //++++++++++++++++hooks+++++++++++
   const [display_login, setLoginDisplay] = useState(false);
+  const [user_login_success, setUserLogin] = useState(false);
+  //++++++++++++++++
 
-  console.log("......loading");
-  console.log("display_login=" + display_login);
+  //++++++++++++++++strings+++++++++
+  const title = "StudyBuddy";
+  const header = "Welcome to StudyBuddy, the smarter way to study!";
+  const vision_statement_1 =
+    "StudyBuddy is a mobile application that provides an effective and entertaining way of reviewing material.";
+  const vision_statement_2 =
+    "Unlike Quizlet, Chegg, and other leading study apps our product is fully customizable and allows users to follow study guides tailored to their learning style.";
+  //++++++++++++++++
 
+  //++++++++++++++++handlers++++++++
   const handleClick = () => {
-    console.log("......enter button clicked");
+    console.log("...button clicked");
+    console.log("------------>display_login:" + display_login);
     setLoginDisplay(!display_login);
   };
+  //++++++++++++++++
 
+  //++++++++++++++++jsx+++++++++++++
   return (
     <View style={styles.container}>
-      <Text
-        style={[{ display: display_login ? "none" : "block" }, styles.title]}
-      >
-        Welcome to StudyBuddy
-      </Text>
-
-      <Nav />
-
-      <Text
-        style={[
-          { display: display_login ? "none" : "block" },
-          styles.visionStatement,
-        ]}
-      >
-        StudyBuddy is a mobile application that provides an effective,
-        entertaining and interactive way of reviewing material. Unlike Quizlet,
-        Chegg, and other leading study apps our product is fully customizable
-        and allows users to follow study guides tailored to their learning
-        style.
-      </Text>
-
-      <View
-        style={[
-          { display: display_login ? "block" : "none" },
-          styles.login_modal,
-        ]}
-      >
-        <Text>Login Modal</Text>
-      </View>
-
+      <Title show={display_login} text={title} />
+      <Header
+        show={display_login}
+        heading={header}
+        sub_heading={vision_statement_1}
+      ></Header>
+      <Content show={display_login} text={vision_statement_2}></Content>
+      <Login show={display_login} />
+      <Button
+        title={display_login ? "exit" : "enter"}
+        onPress={handleClick}
+        color={display_login}
+        show={true}
+      ></Button>
       <StatusBar style="auto" />
-      <Button title="enter" onPress={handleClick}></Button>
     </View>
   );
 }
+//++++++++++++++++
 
+//++++++++++++++++styles++++++++++
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -60,26 +70,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-
-  visionStatement: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "grey",
-    textAlign: "left",
-    margin: "20%",
-  },
-
-  login_modal: {
-    width: 200,
-    height: 200,
-    backgroundColor: "grey",
-    margin: 20,
-    textAlign: "center",
-  },
 });
+//++++++++++++++++
