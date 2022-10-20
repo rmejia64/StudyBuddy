@@ -25,7 +25,6 @@ export default function App() {
   //++++++++++++++++hooks+++++++++++
   const [display_login, setLoginDisplay] = useState(false);
   const [user_login_success, setUserLogin] = useState(false);
-  //++++++++++++++++
 
   //++++++++++++++++strings+++++++++
   const title = "StudyBuddy";
