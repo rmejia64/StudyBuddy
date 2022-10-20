@@ -3,16 +3,21 @@
 // StudyBuddy
 // 2022
 
-//++++++++++++++++imports+++++++++
+//++++++++++++++++imports++++++++++
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Dimensions } from "react-native";
 import { useState } from "react";
 import { Button } from "./components/Button.js";
 import { Title } from "./components/Title.js";
 import { Login } from "./components/Login.js";
 import { Header } from "./components/Header.js";
 import { Content } from "./components/Content.js";
-//++++++++++++++++
+import { Footer } from "./components/Footer.js";
+import { Carousel } from "./components/Carousel.js";
+
+//++++++++++++++++global+++++++++++
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 export default function App() {
   console.log("loading...");
@@ -29,7 +34,6 @@ export default function App() {
     "StudyBuddy is a mobile application that provides an effective and entertaining way of reviewing material.";
   const vision_statement_2 =
     "Unlike Quizlet, Chegg, and other leading study apps our product is fully customizable and allows users to follow study guides tailored to their learning style.";
-  //++++++++++++++++
 
   //++++++++++++++++handlers++++++++
   const handleClick = () => {
@@ -37,30 +41,26 @@ export default function App() {
     console.log("------------>display_login:" + display_login);
     setLoginDisplay(!display_login);
   };
-  //++++++++++++++++
 
   //++++++++++++++++jsx+++++++++++++
   return (
     <View style={styles.container}>
-      <Title show={display_login} text={title} />
-      <Header
-        show={display_login}
-        heading={header}
-        sub_heading={vision_statement_1}
-      ></Header>
-      <Content show={display_login} text={vision_statement_2}></Content>
+      <Title show={true} text={title} />
+      <Header show={display_login} text={header} />
+      <Content show={display_login} text={vision_statement_2} />
       <Login show={display_login} />
+      <Carousel show={!display_login} />
       <Button
         title={display_login ? "exit" : "enter"}
         onPress={handleClick}
         color={display_login}
         show={true}
-      ></Button>
+      />
+      <Footer show={!display_login} text={vision_statement_1} />
       <StatusBar style="auto" />
     </View>
   );
 }
-//++++++++++++++++
 
 //++++++++++++++++styles++++++++++
 const styles = StyleSheet.create({
@@ -68,7 +68,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    width: windowWidth,
+    height: windowHeight,
+    paddingTop: "15%",
+    paddingBottom: "15%",
   },
 });
-//++++++++++++++++

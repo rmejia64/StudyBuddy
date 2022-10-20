@@ -21,16 +21,18 @@ export function Button(props) {
 
 const styles = StyleSheet.create({
   button: {
-    width: 200,
-    height: 75,
+    width: 120,
+    height: 45,
     borderRadius: "50%",
-    margin: "auto",
-    paddingVertical: 25,
+    marginTop: "5%",
+    marginBottom: "5%",
+    alignItems: "center",
   },
-
   button_text: {
     color: "white",
-    textAlign: "center",
     textAlignVertical: "center",
+    paddingTop: "10%",
+    fontWeight: "bold",
+    fontSize: "14pt",
   },
 });
