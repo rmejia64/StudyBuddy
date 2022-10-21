@@ -13,6 +13,7 @@ export function Login(props) {
       text = e;
     },
   ] = React.useState(null);
+  //create a context
   const [
     submit,
     setSubmit = () => {

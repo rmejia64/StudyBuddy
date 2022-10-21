@@ -41,7 +41,7 @@ export default function App() {
     setLoginDisplay(!display_login);
   };
 
-  //++++++++++++++++jsx+++++++++++++
+  //++++++++++++++++elm+++++++++++++
   return (
     <View style={styles.container}>
       <Title show={true} text={title} />
