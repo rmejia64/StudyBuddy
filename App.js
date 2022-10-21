@@ -5,8 +5,8 @@
 
 //++++++++++++++++imports++++++++++
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Dimensions } from "react-native";
-import { useState } from "react";
+import { StyleSheet, View, ScrollView, Dimensions } from "react-native";
+import { useState, useEffect } from "react";
 import { Button } from "./components/Button.js";
 import { Title } from "./components/Title.js";
 import { Login } from "./components/Login.js";
@@ -16,8 +16,10 @@ import { Footer } from "./components/Footer.js";
 import { Carousel } from "./components/Carousel.js";
 
 //++++++++++++++++global+++++++++++
-const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
+const window = Dimensions.get("window");
+const screen = Dimensions.get("screen");
+let SCREEN_WIDTH = screen.width;
+let SCREEN_HEIGHT = window.height;
 
 export default function App() {
   console.log("loading...");
@@ -25,6 +27,7 @@ export default function App() {
   //++++++++++++++++hooks+++++++++++
   const [display_login, setLoginDisplay] = useState(false);
   const [user_login_success, setUserLogin] = useState(false);
+  const [dimensions, setDimensions] = useState({ window, screen });
 
   //++++++++++++++++strings+++++++++
   const title = "StudyBuddy";
@@ -41,22 +44,48 @@ export default function App() {
     setLoginDisplay(!display_login);
   };
 
+  useEffect(() => {
+    const subscription = Dimensions.addEventListener(
+      "change",
+      ({ window, screen }) => {
+        setDimensions({ window, screen });
+      }
+    );
+
+    SCREEN_WIDTH = dimensions.screen.width;
+    SCREEN_HEIGHT = dimensions.screen.height;
+    return () => subscription?.remove();
+  });
+
   //++++++++++++++++elm+++++++++++++
   return (
-    <View style={styles.container}>
-      <Title show={true} text={title} />
-      <Header show={display_login} text={header} />
-      <Content show={display_login} text={vision_statement_2} />
-      <Login show={display_login} />
-      <Carousel show={!display_login} />
-      <Button
-        title={display_login ? "exit" : "enter"}
-        onPress={handleClick}
-        color={display_login}
-        show={true}
-      />
-      <Footer show={!display_login} text={vision_statement_1} />
-      <StatusBar style="auto" />
+    <View style={{ flex: 1 }}>
+      <ScrollView
+        contentContainerStyle={[
+          styles.container,
+          {
+            width: dimensions.screen.width,
+            height: "auto",
+          },
+        ]}
+        alwaysBounceVertical={true}
+        snapToEnd={true}
+        scrollEnabled={true}
+      >
+        <Title show={true} text={title} />
+        <Header show={display_login} text={header} />
+        <Content show={display_login} text={vision_statement_2} />
+        <Login show={display_login} />
+        <Carousel show={!display_login} />
+        <Button
+          title={display_login ? "exit" : "enter"}
+          onPress={handleClick}
+          color={display_login}
+          show={true}
+        />
+        <Footer show={!display_login} text={vision_statement_1} />
+        <StatusBar style="auto" />
+      </ScrollView>
     </View>
   );
 }
@@ -64,12 +93,9 @@ export default function App() {
 //++++++++++++++++styles++++++++++
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    width: windowWidth,
-    height: windowHeight,
     paddingTop: "15%",
     paddingBottom: "15%",
+    alignItems: "center",
   },
 });

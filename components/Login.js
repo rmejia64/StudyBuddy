@@ -4,7 +4,10 @@ import { Link } from "./Link";
 
 export function Login(props) {
   const { show } = props;
-  console.log("...login module displayed");
+
+  if (show) {
+    console.log("...login module displayed");
+  }
 
   const [
     text,

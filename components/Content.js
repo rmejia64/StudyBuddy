@@ -20,16 +20,18 @@ export function Content(props) {
 
 const styles = StyleSheet.create({
   container: {
-    width: "65%",
+    width: "100%",
     height: "auto",
     alignItems: "center",
     padding: "5%",
   },
 
   paragraph: {
-    textAlign: "left",
-    fontSize: "12pt",
+    width: "100%",
+    fontSize: "16pt",
     fontWeight: "bold",
-    color: "black",
+    color: "gray",
+    textAlign: "center",
+    padding: "10%",
   },
 });

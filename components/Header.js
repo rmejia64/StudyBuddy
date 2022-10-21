@@ -24,11 +24,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   heading: {
-    width: "100%",
+    width: "80%",
     fontSize: "24pt",
     fontWeight: "bold",
-    color: "gray",
+    color: "black",
     textAlign: "center",
-    padding: "10%",
+    padding: "5%",
   },
 });
