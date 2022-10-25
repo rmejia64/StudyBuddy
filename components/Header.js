@@ -1,34 +1,38 @@
-import { View, Text, StyleSheet } from "react-native";
+// Rodrigo Mejia
+// COEN 174
+// StudyBuddy
+// 2022
+
+//++++++++++++++++imports++++++++++
+import { Text, StyleSheet } from "react-native";
 import React from "react";
 
 export function Header(props) {
-  const { show, text } = props;
+  const { show, text, color, size } = props;
 
+  //++++++++++++++++jsx+++++++++++++
   return (
-    <View
+    <Text
+      allowFontScaling={false}
       style={[
-        styles.container,
+        styles.header,
         {
-          display: show ? "none" : "block",
+          display: show ? "auto" : "none",
+          color: color,
+          fontSize: size,
         },
       ]}
     >
-      <Text style={styles.heading}>{text}</Text>
-    </View>
+      {text}
+    </Text>
   );
 }
+
+//++++++++++++++++styles++++++++++
 const styles = StyleSheet.create({
-  container: {
-    width: "90%",
-    margin: "auto",
-    alignItems: "center",
-  },
-  heading: {
-    width: "80%",
-    fontSize: "24pt",
+  header: {
     fontWeight: "bold",
-    color: "black",
     textAlign: "center",
-    padding: "5%",
+    margin: 15,
   },
 });

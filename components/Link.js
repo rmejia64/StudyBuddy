@@ -1,9 +1,16 @@
+// Rodrigo Mejia
+// COEN 174
+// StudyBuddy
+// 2022
+
+//++++++++++++++++imports++++++++++
 import { Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 
 export function Link(props) {
-  const { show, text, onPress } = props;
+  const { show, text, onPress, size, color } = props;
 
+  //++++++++++++++++jsx+++++++++++++
   return (
     <Pressable
       onPress={onPress}
@@ -14,21 +21,24 @@ export function Link(props) {
         },
       ]}
     >
-      <Text style={styles.link_text}>{text}</Text>
+      <Text
+        allowFontScaling={false}
+        style={[styles.link_text, { fontSize: size, color: color }]}
+      >
+        {text}
+      </Text>
     </Pressable>
   );
 }
 
+//++++++++++++++++styles++++++++++
 const styles = StyleSheet.create({
   link: {
-    borderWidth: 1,
-    marginTop: "3%",
-    padding: 10,
+    margin: 5,
+    padding: 5,
   },
   link_text: {
     fontWeight: "bold",
-    color: "white",
-    fontSize: "18pt",
-    textAlign: "center",
+    textDecorationLine: "underline",
   },
 });

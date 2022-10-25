@@ -1,67 +1,104 @@
+// Rodrigo Mejia
+// COEN 174
+// StudyBuddy
+// 2022
+
+//++++++++++++++++imports++++++++++
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import React from "react";
-import { Link } from "./Link";
+import { Button } from "./Button.js";
+import { Link } from "./Link.js";
 
 export function Login(props) {
-  const { show } = props;
+  const { show, submit, onSubmit } = props;
+  const [username, changeUser] = React.useState("null");
+  const [pass, changePass] = React.useState("null");
 
-  if (show) {
-    console.log("...login module displayed");
-  }
+  const handleText = () => {
+    changeUser;
+    changePass;
+  };
 
-  const [
-    text,
-    changeText = (e) => {
-      console.log("...text was changed");
-      text = e;
-    },
-  ] = React.useState(null);
-  //create a context
-  const [
-    submit,
-    setSubmit = () => {
-      submit = !submit;
-      console.log("------------>submit:" + submit);
-    },
-  ] = React.useState(false);
+  const handlePress = () => {
+    onSubmit(username, pass);
+  };
 
+  //++++++++++++++++jsx+++++++++++++
   return (
     <View
       style={[
         styles.login_modal,
         {
-          display: show && !submit ? "block" : "none",
+          display: show && !submit ? "auto" : "none",
         },
       ]}
     >
-      <Text style={styles.modal_text}>Email Address:</Text>
+      <Text allowFontScaling={false} style={styles.modal_text}>
+        Email Address:
+      </Text>
       <TextInput
         style={styles.input}
-        value={text}
-        onChangeText={changeText}
+        ChangeText={handleText}
         placeholder="username"
         keyboardType="email"
       ></TextInput>
 
-      <Text style={styles.modal_text}>Password:</Text>
+      <Text allowFontScaling={false} style={styles.modal_text}>
+        Password:
+      </Text>
       <TextInput
         style={styles.input}
-        onChangeText={changeText}
-        value={null}
+        ChangeText={handleText}
         placeholder="password"
         keyboardType="password"
       ></TextInput>
 
-      <Link show={true} text={"Submit"} onPress={setSubmit} />
+      <Text allowFontScaling={false} style={styles.modal_text}>
+        Confirm Password:
+      </Text>
+      <TextInput
+        style={styles.input}
+        ChangeText={handleText}
+        placeholder="re-type password"
+        keyboardType="password"
+      ></TextInput>
+
+      <Link
+        show={show}
+        color={"white"}
+        size={"12pt"}
+        allowFontScaling={false}
+        style={styles.modal_link}
+        text={"Already Have An Account?"}
+        onPress={() => {}}
+      ></Link>
+
+      <Button
+        show={true}
+        title={"submit"}
+        color="rgba(180, 180, 180, 0.9)"
+        onPress={handlePress}
+      />
+
+      <Link
+        show={show}
+        color={"white"}
+        size={"12pt"}
+        allowFontScaling={false}
+        style={styles.modal_link}
+        text={"Forgot Username or Password?"}
+        onPress={() => {}}
+      ></Link>
     </View>
   );
 }
 
+//++++++++++++++++styles++++++++++
 const styles = StyleSheet.create({
   login_modal: {
     width: "90%",
     height: "auto",
-    backgroundColor: "grey",
+    backgroundColor: "rgba(0, 0, 0, 0.8)",
     margin: 20,
     borderRadius: 25,
     alignItems: "center",
@@ -69,8 +106,13 @@ const styles = StyleSheet.create({
   },
   modal_text: {
     color: "white",
-    fontWeight: "light",
-    fontSize: "18pt",
+    fontWeight: "bold",
+    fontSize: "14pt",
+  },
+  modal_link: {
+    color: "white",
+    textDecorationLine: "underline",
+    margin: 15,
   },
   input: {
     height: 40,

@@ -1,37 +1,39 @@
-import { View, Text, StyleSheet } from "react-native";
+// Rodrigo Mejia
+// COEN 174
+// StudyBuddy
+// 2022
+
+//++++++++++++++++imports++++++++++
+import { Text, StyleSheet } from "react-native";
 import React from "react";
 
 export function Content(props) {
-  const { show, text } = props;
+  const { show, text, color, size } = props;
 
+  //++++++++++++++++jsx+++++++++++++
   return (
-    <View
+    <Text
+      allowFontScaling={false}
       style={[
-        styles.container,
+        styles.paragraph,
         {
-          display: show ? "block" : "none",
+          display: show ? "auto" : "none",
+          color: color,
+          fontSize: size,
         },
       ]}
     >
-      <Text style={styles.paragraph}>{text}</Text>
-    </View>
+      {text}
+    </Text>
   );
 }
 
+//++++++++++++++++styles++++++++++
 const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    height: "auto",
-    alignItems: "center",
-    padding: "5%",
-  },
-
   paragraph: {
-    width: "100%",
-    fontSize: "16pt",
     fontWeight: "bold",
-    color: "gray",
     textAlign: "center",
-    padding: "10%",
+    padding: 15,
+    margin: 15,
   },
 });

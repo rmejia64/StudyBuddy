@@ -1,9 +1,16 @@
+// Rodrigo Mejia
+// COEN 174
+// StudyBuddy
+// 2022
+
+//++++++++++++++++imports++++++++++
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 export function Nav(props) {
   const { show } = props;
 
+  //++++++++++++++++jsx+++++++++++++
   return (
     <View style={[{ display: show ? "block" : "none" }, styles.navbar]}>
       <Text style={[{}, styles.nav_text]}>~ Navbar here ~</Text>
@@ -11,6 +18,7 @@ export function Nav(props) {
   );
 }
 
+//++++++++++++++++styles++++++++++
 const styles = StyleSheet.create({
   navbar: {
     width: "75%",

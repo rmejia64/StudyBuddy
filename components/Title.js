@@ -1,15 +1,25 @@
+// Rodrigo Mejia
+// COEN 174
+// StudyBuddy
+// 2022
+
+//++++++++++++++++imports++++++++++
 import { Text, StyleSheet } from "react-native";
 import React from "react";
 
 export function Title(props) {
-  const { show, text } = props;
+  const { show, text, color, size } = props;
 
+  //++++++++++++++++jsx+++++++++++++
   return (
     <Text
+      allowFontScaling={false}
       style={[
         styles.title,
         {
-          display: show ? "block" : "none",
+          color: color,
+          display: show ? "auto" : "none",
+          fontSize: size,
         },
       ]}
     >
@@ -18,10 +28,10 @@ export function Title(props) {
   );
 }
 
+//++++++++++++++++styles++++++++++
 const styles = StyleSheet.create({
   title: {
-    marginTop: "5%",
-    fontSize: "40pt",
+    margin: 50,
     fontWeight: "bold",
     alignItems: "center",
   },
