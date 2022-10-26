@@ -20,9 +20,11 @@ export function Profile(props) {
 }
 const styles = StyleSheet.create({
   container: {
-    width: "auto",
+    width: "90%",
     height: "auto",
     margin: 15,
+    alignItems: "center",
+    borderRadius: "20%",
   },
   img: {
     height: 85,

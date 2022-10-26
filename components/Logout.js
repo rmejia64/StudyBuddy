@@ -17,7 +17,7 @@ export function Logout(props) {
     >
       <Profile
         show={show}
-        color={"green"}
+        color={"rgba(0, 0, 250, 0.8)"}
         user={"default"}
         onPress={handleProfile}
         picture={userPicture}
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   container: {
     width: "90%",
     height: "auto",
-    backgroundColor: "rgba(0, 0, 0, 0.8)",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
     margin: 20,
     borderRadius: 25,
     alignItems: "center",

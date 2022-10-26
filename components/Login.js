@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   login_modal: {
     width: "90%",
     height: "auto",
-    backgroundColor: "rgba(0, 0, 0, 0.8)",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
     margin: 20,
     borderRadius: 25,
     alignItems: "center",
