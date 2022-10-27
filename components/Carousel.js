@@ -121,7 +121,7 @@ export function Carousel(props) {
 const styles = StyleSheet.create({
   container: {
     height: "auto",
-    width: "90%",
+    width: "95%",
     padding: 5,
     margin: 25,
     borderRadius: 20,

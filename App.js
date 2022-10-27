@@ -43,7 +43,26 @@ const features = {
   ],
 };
 
-export default function App() {
+const footer_icons = {
+  links: [
+    () => {
+      console.log("...footer icon 1 clicked");
+    },
+    () => {
+      console.log("...footer icon 2 clicked");
+    },
+    () => {
+      console.log("...footer icon 3 clicked");
+    },
+  ],
+  logos: [
+    require("./assets/instagram.png"),
+    require("./assets/linkedin.png"),
+    require("./assets/github.png"),
+  ],
+};
+
+export default function App(paths) {
   console.log("rendering...");
 
   //++++++++++++++++hooks+++++++++++
@@ -62,11 +81,14 @@ export default function App() {
     "StudyBuddy is a mobile application that provides an effective and entertaining way of reviewing material.";
   const vision_statement_2 =
     "Unlike Quizlet, Chegg, and other leading study apps our product is fully customizable and allows users to follow study guides tailored to their learning style.";
+  const footerText = "yeet";
+
   const logo = require("./assets/logo.png");
   const logo_alt = require("./assets/logo_alt.png");
   const acc_icon = require("./assets/account_icon.png");
   const settings_icon = require("./assets/settings_icon.png");
   const background = require("./assets/bg.png");
+
   //++++++++++++++++handlers++++++++
 
   const handlePress = () => {
@@ -172,7 +194,7 @@ export default function App() {
             />
             <Content
               show={showLogin && !submit}
-              text={vision_statement_2}
+              text={vision_statement_1}
               color={"gray"}
               size={"16pt"}
             />
@@ -196,11 +218,19 @@ export default function App() {
               color={"rgba(0, 0, 200, 0.8)"}
               title={"Why Choose Us?"}
             />
+            <Header
+              show={!showLogin}
+              text={vision_statement_2}
+              color={"black"}
+              size={"16pt"}
+            />
           </View>
           <Footer
             show={true}
-            text={vision_statement_1}
+            text={footerText}
             color={"rgba(250, 150, 0, 0.8)"}
+            clickable_logos={footer_icons.logos}
+            social_links={footer_icons.links}
           />
           <StatusBar style="auto" />
         </ScrollView>

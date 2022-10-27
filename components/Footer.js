@@ -7,9 +7,10 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { Link } from "./Link";
+import { Icons } from "./Icons";
 
 export function Footer(props) {
-  const { show, text, color } = props;
+  const { show, text, color, clickable_logos, social_links } = props;
 
   //++++++++++++++++jsx+++++++++++++
   return (
@@ -25,6 +26,7 @@ export function Footer(props) {
       <Text allowFontScaling={false} style={styles.footer_text}>
         {text}
       </Text>
+      <Icons handlers={social_links} icons={clickable_logos} />
       <View style={styles.link_container}>
         <View style={styles.section}>
           <Text style={styles.section_header}>Questions</Text>
@@ -131,8 +133,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     textAlign: "center",
-    padding: 50,
-    borderRadius: 20,
+    paddingTop: 15,
+    margin: 5,
   },
   copyright: {
     width: "100%",
@@ -152,7 +154,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignContent: "center",
     alignSelf: "center",
-    paddingVertical: 10,
+    paddingVertical: 5,
     borderRadius: 20,
   },
   section: {
