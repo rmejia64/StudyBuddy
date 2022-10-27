@@ -34,6 +34,7 @@ import {
   background,
   background_alt,
 } from "./functions/paths";
+import { Settings_Page } from "./pages/Settings_Page";
 
 //++++++++++++++++strings
 const header = "Welcome to StudyBuddy, the smarter way to study!";
@@ -41,7 +42,7 @@ const vision_statement_1 =
   "StudyBuddy is a mobile application that provides an effective and entertaining way of reviewing material.";
 const vision_statement_2 =
   "Unlike Quizlet, Chegg, and other leading study apps our product is fully customizable and allows users to follow study guides tailored to their learning style.";
-const footerText = "Feel free to reach out!";
+const footerText = "Reach out to our Dev team!";
 
 export default function App() {
   console.clear();
@@ -53,6 +54,7 @@ export default function App() {
   const [showLogin, setLoginDisplay] = useState(false);
   const [submit, onSubmit] = useState(false);
   const [darkMode, setdarkMode] = useState(false);
+  const [toggleSettings, changeToggleSettings] = useState(false);
 
   //++++++++++++++++handlers
   const handleButton = () => {
@@ -81,6 +83,7 @@ export default function App() {
 
   const handleSettings = () => {
     console.log("...settings clicked");
+    changeToggleSettings(!toggleSettings);
   };
 
   const handleDarkMode = () => {
@@ -203,6 +206,7 @@ export default function App() {
             color_br={darkMode ? "white" : "black"}
           />
           <StatusBar style="auto" />
+          <Settings_Page show={toggleSettings} close={changeToggleSettings} />
         </ScrollView>
       </ImageBackground>
     </View>

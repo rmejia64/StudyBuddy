@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "../components/Button";
 import { Title } from "../components/Title";
 
-export function FAQ_Page(props) {
+export function Mission_Page(props) {
   const { show, close } = props;
 
   return (
@@ -14,7 +14,7 @@ export function FAQ_Page(props) {
       onRequestClose={close}
     >
       <View style={styles.container}>
-        <Title show={show} text={"FAQ"} color={"black"} size={"24pt"} />
+        <Title show={show} text={"Mission"} color={"black"} size={"24pt"} />
         <Button show={show} title="close" color="red" onPress={close} />
       </View>
     </Modal>

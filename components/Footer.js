@@ -5,9 +5,19 @@
 
 //++++++++++++++++imports++++++++++
 import { View, Text, StyleSheet, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "./Link";
 import { Icons } from "./Icons";
+
+import { FAQ_Page } from "../pages/FAQ_Page.js";
+import { Help_Page } from "../pages/Help_Page";
+import { Mission_Page } from "../pages/Mission_Page";
+import { Research_Page } from "../pages/Research_Page";
+import { License_Page } from "../pages/License_Page";
+import { Study_Page } from "../pages/Study_Page";
+import { Terms_Page } from "../pages/Terms_Page";
+import { Tutorial_Page } from "../pages/Tutorial_Page";
+import { Other_Apps } from "../pages/Other_Apps";
 
 export function Footer(props) {
   const { show, text, color, clickable_logos, social_links, color_br } = props;
@@ -16,6 +26,19 @@ export function Footer(props) {
     console.log("..rendered Footer\n");
     console.log("[############################]\n");
   }
+
+  const [FAQ, toggleFAQ] = useState(false);
+  const [help, toggleHelp] = useState(false);
+  const [email, toggleEmail] = useState(false);
+
+  const [mission, toggleMission] = useState(false);
+  const [research, toggleResearch] = useState(false);
+  const [license, toggleLicense] = useState(false);
+  const [terms, toggleTerms] = useState(false);
+
+  const [other, toggleOther] = useState(false);
+  const [tips, toggleTips] = useState(false);
+  const [tutorial, toggleTutorial] = useState(false);
 
   //++++++++++++++++jsx+++++++++++++
   return (
@@ -46,6 +69,7 @@ export function Footer(props) {
             size={"12pt"}
             onPress={() => {
               console.log("...[FAQ] link clicked");
+              toggleFAQ(!FAQ);
             }}
             text={"FAQ"}
           />
@@ -55,6 +79,7 @@ export function Footer(props) {
             size={"12pt"}
             onPress={() => {
               console.log("...[Help] link clicked");
+              toggleHelp(!help);
             }}
             text={"Help"}
           />
@@ -64,6 +89,8 @@ export function Footer(props) {
             size={"12pt"}
             onPress={() => {
               console.log("...[Email Us] link clicked");
+              toggleEmail(!email);
+              alert("Email coming soon!");
             }}
             text={"Email Us"}
           />
@@ -76,6 +103,7 @@ export function Footer(props) {
             size={"12pt"}
             onPress={() => {
               console.log("...[Mission] link clicked");
+              toggleMission(!mission);
             }}
             text={"Mission"}
           />
@@ -85,6 +113,7 @@ export function Footer(props) {
             size={"12pt"}
             onPress={() => {
               console.log("...[Research] link clicked");
+              toggleResearch(!research);
             }}
             text={"Research"}
           />
@@ -94,6 +123,7 @@ export function Footer(props) {
             size={"12pt"}
             onPress={() => {
               console.log("...[License] link clicked");
+              toggleLicense(!license);
             }}
             text={"License"}
           />
@@ -103,6 +133,7 @@ export function Footer(props) {
             size={"12pt"}
             onPress={() => {
               console.log("...[Terms & Conditions] link clicked");
+              toggleTerms(!terms);
             }}
             text={"Terms & Conditions"}
           />
@@ -115,6 +146,7 @@ export function Footer(props) {
             size={"12pt"}
             onPress={() => {
               console.log("...[Other Apps] link clicked");
+              toggleOther(!other);
             }}
             text={"Other Apps"}
           />
@@ -124,6 +156,7 @@ export function Footer(props) {
             size={"12pt"}
             onPress={() => {
               console.log("...[Study Tips] link clicked");
+              toggleTips(!tips);
             }}
             text={"Study Tips"}
           />
@@ -133,6 +166,7 @@ export function Footer(props) {
             size={"12pt"}
             onPress={() => {
               console.log("...[Tutorial] link clicked");
+              toggleTutorial(!tutorial);
             }}
             text={"Tutorial"}
           />
@@ -144,6 +178,18 @@ export function Footer(props) {
       <Text allowFontScaling={false} style={styles.copyright}>
         {"Santa Clara University © 2022"}
       </Text>
+
+      <FAQ_Page show={FAQ} close={toggleFAQ} />
+      <Help_Page show={help} close={toggleHelp} />
+      <Mission_Page show={mission} close={toggleMission} />
+
+      <Research_Page show={research} close={toggleResearch} />
+      <License_Page show={license} close={toggleLicense} />
+      <Study_Page show={tips} close={toggleTips} />
+
+      <Tutorial_Page show={tutorial} close={toggleTutorial} />
+      <Other_Apps show={other} close={toggleOther} />
+      <Terms_Page show={terms} close={toggleTerms} />
     </View>
   );
 }

@@ -1,13 +1,16 @@
 export const footer_icons = {
   links: [
     () => {
-      console.log("...footer icon 1 clicked");
+      console.log("...Instagram icon clicked");
+      alert("Instagram page coming soon!");
     },
     () => {
-      console.log("...footer icon 2 clicked");
+      console.log("...LinkedIn icon clicked");
+      alert("LinkedIn page coming soon!");
     },
     () => {
-      console.log("...footer icon 3 clicked");
+      console.log("...Github icon clicked");
+      alert("Github redirect coming soon!");
     },
   ],
   logos: [
@@ -34,26 +37,36 @@ export const features = {
 export const carousel_funcs = [
   () => {
     console.log("...carousel icon 1 clicked");
+    alert("Upload your own pdfs!");
   },
   () => {
     console.log("...carousel icon 2 clicked");
+    alert("Multple note styles e.g Linear, Pattern, Cornell, Flowcharts, etc!");
   },
   () => {
     console.log("...carousel icon 3 clicked");
+    alert("Create and review flash card sets!");
   },
   () => {
     console.log("...carousel icon 4 clicked");
+    alert("Create your own test questions!");
   },
   () => {
     console.log("...carousel icon 5 clicked");
+    alert("Time your test taking");
   },
   () => {
     console.log("...carousel icon 6 clicked");
+    alert("Annotate pdfs, slides, books, etc!");
   },
   () => {
     console.log("...carousel icon 7 clicked");
+    alert(
+      "Take offial Standardized test practice questions e.g SAT, PSAT, AP, IB, GRE, etc!"
+    );
   },
   () => {
     console.log("...carousel icon 8 clicked");
+    alert("Set up reminders and alerts!");
   },
 ];

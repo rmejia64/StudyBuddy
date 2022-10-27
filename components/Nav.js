@@ -46,6 +46,8 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(250, 250, 250, 0.8)",
     alignItems: "center",
     justifyContent: "center",
+    borderWidth: 2,
+    borderColor: "black",
   },
   img: {
     height: 25,
