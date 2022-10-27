@@ -10,6 +10,10 @@ import React from "react";
 export function Content(props) {
   const { show, text, color, size } = props;
 
+  if (show) {
+    console.log("..rendered Content\n");
+  }
+
   //++++++++++++++++jsx+++++++++++++
   return (
     <Text

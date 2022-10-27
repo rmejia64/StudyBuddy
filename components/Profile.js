@@ -4,6 +4,11 @@ import { Header } from "./Header";
 
 export function Profile(props) {
   const { show, user, color, picture, onPress } = props;
+
+  if (show) {
+    console.log("..rendered Profile Info\n");
+  }
+
   return (
     <View
       style={[
@@ -30,6 +35,6 @@ const styles = StyleSheet.create({
     height: 85,
     width: 85,
     margin: 15,
-    borderRadius: "20%",
+    borderRadius: "50%",
   },
 });

@@ -4,13 +4,18 @@
 // 2022
 
 //++++++++++++++++imports++++++++++
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 import { Link } from "./Link";
 import { Icons } from "./Icons";
 
 export function Footer(props) {
-  const { show, text, color, clickable_logos, social_links } = props;
+  const { show, text, color, clickable_logos, social_links, color_br } = props;
+
+  if (show) {
+    console.log("..rendered Footer\n");
+    console.log("[############################]\n");
+  }
 
   //++++++++++++++++jsx+++++++++++++
   return (
@@ -20,9 +25,14 @@ export function Footer(props) {
         {
           display: show ? "auto" : "none",
           backgroundColor: color,
+          borderColor: color_br,
         },
       ]}
     >
+      <Image
+        style={[styles.up_arrow]}
+        source={require("../assets/up-arrow.png")}
+      />
       <Text allowFontScaling={false} style={styles.footer_text}>
         {text}
       </Text>
@@ -34,21 +44,27 @@ export function Footer(props) {
             show={show}
             color={"gray"}
             size={"12pt"}
-            onPress={() => {}}
+            onPress={() => {
+              console.log("...[FAQ] link clicked");
+            }}
             text={"FAQ"}
           />
           <Link
             show={show}
             color={"gray"}
             size={"12pt"}
-            onPress={() => {}}
+            onPress={() => {
+              console.log("...[Help] link clicked");
+            }}
             text={"Help"}
           />
           <Link
             show={show}
             color={"gray"}
             size={"12pt"}
-            onPress={() => {}}
+            onPress={() => {
+              console.log("...[Email Us] link clicked");
+            }}
             text={"Email Us"}
           />
         </View>
@@ -58,28 +74,36 @@ export function Footer(props) {
             show={show}
             color={"gray"}
             size={"12pt"}
-            onPress={() => {}}
+            onPress={() => {
+              console.log("...[Mission] link clicked");
+            }}
             text={"Mission"}
           />
           <Link
             show={show}
             color={"gray"}
             size={"12pt"}
-            onPress={() => {}}
+            onPress={() => {
+              console.log("...[Research] link clicked");
+            }}
             text={"Research"}
           />
           <Link
             show={show}
             color={"gray"}
             size={"12pt"}
-            onPress={() => {}}
+            onPress={() => {
+              console.log("...[License] link clicked");
+            }}
             text={"License"}
           />
           <Link
             show={show}
             color={"gray"}
             size={"12pt"}
-            onPress={() => {}}
+            onPress={() => {
+              console.log("...[Terms & Conditions] link clicked");
+            }}
             text={"Terms & Conditions"}
           />
         </View>
@@ -89,21 +113,27 @@ export function Footer(props) {
             show={show}
             color={"gray"}
             size={"12pt"}
-            onPress={() => {}}
+            onPress={() => {
+              console.log("...[Other Apps] link clicked");
+            }}
             text={"Other Apps"}
           />
           <Link
             show={show}
             color={"gray"}
             size={"12pt"}
-            onPress={() => {}}
+            onPress={() => {
+              console.log("...[Study Tips] link clicked");
+            }}
             text={"Study Tips"}
           />
           <Link
             show={show}
             color={"gray"}
             size={"12pt"}
-            onPress={() => {}}
+            onPress={() => {
+              console.log("...[Tutorial] link clicked");
+            }}
             text={"Tutorial"}
           />
         </View>
@@ -126,6 +156,7 @@ const styles = StyleSheet.create({
     marginVertical: 50,
     alignItems: "center",
     borderRadius: 20,
+    borderWidth: 5,
   },
   footer_text: {
     width: "100%",
@@ -133,7 +164,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     textAlign: "center",
-    paddingTop: 15,
     margin: 5,
   },
   copyright: {
@@ -176,5 +206,10 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
+  },
+  up_arrow: {
+    height: 30,
+    width: 30,
+    margin: 5,
   },
 });

@@ -10,9 +10,13 @@ import { Button } from "./Button.js";
 import { Link } from "./Link.js";
 
 export function Login(props) {
-  const { show, submit, onSubmit } = props;
+  const { show, submit, onSubmit, color, color_text } = props;
   const [username, changeUser] = React.useState("null");
   const [pass, changePass] = React.useState("null");
+
+  if (show && !submit) {
+    console.log("..rendered login module\n");
+  }
 
   const handleText = () => {
     changeUser;
@@ -30,47 +34,70 @@ export function Login(props) {
         styles.login_modal,
         {
           display: show && !submit ? "auto" : "none",
+          backgroundColor: color,
         },
       ]}
     >
-      <Text allowFontScaling={false} style={styles.modal_text}>
+      <Text
+        allowFontScaling={false}
+        style={[
+          [styles.modal_text, { color: color_text }],
+          { color: color_text },
+        ]}
+      >
         Email Address:
       </Text>
       <TextInput
-        style={styles.input}
+        style={[
+          styles.input,
+          {
+            backgroundColor: color_text,
+          },
+        ]}
         ChangeText={handleText}
         placeholder="username"
+        placeholderTextColor={color}
         keyboardType="email"
       ></TextInput>
 
-      <Text allowFontScaling={false} style={styles.modal_text}>
+      <Text
+        allowFontScaling={false}
+        style={[styles.modal_text, { color: color_text }]}
+      >
         Password:
       </Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { backgroundColor: color_text }]}
         ChangeText={handleText}
         placeholder="password"
+        placeholderTextColor={color}
         keyboardType="password"
       ></TextInput>
 
-      <Text allowFontScaling={false} style={styles.modal_text}>
+      <Text
+        allowFontScaling={false}
+        style={[styles.modal_text, { color: color_text }]}
+      >
         Confirm Password:
       </Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { backgroundColor: color_text }]}
         ChangeText={handleText}
         placeholder="re-type password"
+        placeholderTextColor={color}
         keyboardType="password"
       ></TextInput>
 
       <Link
         show={show}
-        color={"white"}
+        color={color_text}
         size={"12pt"}
         allowFontScaling={false}
         style={styles.modal_link}
         text={"Already Have An Account?"}
-        onPress={() => {}}
+        onPress={() => {
+          console.log("...existing user link clicked");
+        }}
       ></Link>
 
       <Button
@@ -82,12 +109,14 @@ export function Login(props) {
 
       <Link
         show={show}
-        color={"white"}
+        color={color_text}
         size={"12pt"}
         allowFontScaling={false}
         style={styles.modal_link}
         text={"Forgot Username or Password?"}
-        onPress={() => {}}
+        onPress={() => {
+          console.log("...reset link clicked");
+        }}
       ></Link>
     </View>
   );
@@ -98,19 +127,16 @@ const styles = StyleSheet.create({
   login_modal: {
     width: "90%",
     height: "auto",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
     margin: 20,
     borderRadius: 25,
     alignItems: "center",
     padding: "5%",
   },
   modal_text: {
-    color: "white",
     fontWeight: "bold",
     fontSize: "14pt",
   },
   modal_link: {
-    color: "white",
     textDecorationLine: "underline",
     margin: 15,
   },
@@ -118,8 +144,8 @@ const styles = StyleSheet.create({
     height: 40,
     width: "90%",
     margin: 12,
-    borderWidth: 1,
+    borderWidth: 2,
     padding: 10,
-    backgroundColor: "white",
+    borderColor: "red",
   },
 });

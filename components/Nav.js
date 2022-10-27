@@ -8,15 +8,19 @@ import { Pressable, StyleSheet, Image, View } from "react-native";
 import React from "react";
 
 export function Nav(props) {
-  const { show, settings, account, onAccount, onSettings } = props;
+  const { show, settings, darkModeIcon, onDarkMode, onSettings } = props;
+
+  if (show) {
+    console.log("..rendered Nav\n");
+  }
 
   //++++++++++++++++jsx+++++++++++++
   return (
     <View style={[{ display: show ? "block" : "none" }, styles.navbar]}>
-      <Pressable onPress={onAccount}>
-        <Image style={styles.img} source={account} />
+      <Pressable style={styles.img_container} onPress={onDarkMode}>
+        <Image style={styles.img} source={darkModeIcon} />
       </Pressable>
-      <Pressable onPress={onSettings}>
+      <Pressable style={styles.img_container} onPress={onSettings}>
         <Image style={styles.img} source={settings} />
       </Pressable>
     </View>
@@ -35,11 +39,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  img: {
-    height: 30,
-    width: 30,
+  img_container: {
+    height: 40,
+    width: 40,
     borderRadius: "50%",
-    backgroundColor: "rgba(100, 180, 255, 0.4)",
+    backgroundColor: "rgba(250, 250, 250, 0.8)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  img: {
+    height: 25,
+    width: 25,
+    borderRadius: "50%",
     resizeMode: "contain",
   },
 });

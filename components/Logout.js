@@ -5,20 +5,30 @@ import { Link } from "./Link";
 import { Profile } from "./Profile";
 
 export function Logout(props) {
-  const { show, submit, onClick, userPicture } = props;
+  const { show, submit, onClick, userPicture, color } = props;
+
+  if (show && submit) {
+    console.log("...rendered logout module\n");
+  }
 
   const handleProfile = () => {
-    console.log("...profile clicked");
+    console.log("...profile picture clicked");
   };
 
   return (
     <View
-      style={[styles.container, { display: submit && show ? "auto" : "none" }]}
+      style={[
+        styles.container,
+        {
+          display: submit && show ? "auto" : "none",
+          backgroundColor: color,
+        },
+      ]}
     >
       <Profile
         show={show}
-        color={"rgba(0, 0, 250, 0.8)"}
-        user={"default"}
+        color={"rgba(50, 100, 255, 0.8)"}
+        user={"~username~"}
         onPress={handleProfile}
         picture={userPicture}
       />
@@ -31,11 +41,13 @@ export function Logout(props) {
 
       <Link
         show={show}
-        text={"Reset Username or Password?"}
+        text={"Change Username or Password?"}
         color={"white"}
         size={"12pt"}
         style={styles.modal_link}
-        onPress={() => {}}
+        onPress={() => {
+          console.log("...change info link clicked");
+        }}
       />
     </View>
   );
@@ -45,7 +57,6 @@ const styles = StyleSheet.create({
   container: {
     width: "90%",
     height: "auto",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
     margin: 20,
     borderRadius: 25,
     alignItems: "center",

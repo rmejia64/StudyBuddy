@@ -10,6 +10,10 @@ import React from "react";
 export function Title(props) {
   const { show, text, color, size } = props;
 
+  if (show) {
+    console.log("..rendered Title");
+  }
+
   //++++++++++++++++jsx+++++++++++++
   return (
     <Text

@@ -3,17 +3,18 @@
 // StudyBuddy
 // 2022
 
-//++++++++++++++++imports++++++++++
+//++++++++++++++++imports
 import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
 import {
   StyleSheet,
   View,
   Image,
   ScrollView,
-  Dimensions,
   ImageBackground,
 } from "react-native";
-import { useState, useEffect } from "react";
+
+//++++++++++++++++custom
 import { Button } from "./components/Button";
 import { Footer } from "./components/Footer";
 import { Carousel } from "./components/Carousel";
@@ -22,134 +23,89 @@ import { Nav } from "./components/Nav";
 import { Login } from "./components/Login";
 import { Header } from "./components/Header";
 import { Content } from "./components/Content";
+import { credentials } from "./functions/authentication";
+import { footer_icons, features, carousel_funcs } from "./functions/objects";
+import {
+  logo,
+  logo_alt,
+  dark_mode_icon,
+  light_mode_icon,
+  settings_icon,
+  background,
+  background_alt,
+} from "./functions/paths";
 
-//++++++++++++++++global+++++++++++
-const window = Dimensions.get("window");
-const screen = Dimensions.get("screen");
-let SCREEN_WIDTH = screen.width;
-let SCREEN_HEIGHT = window.height;
+//++++++++++++++++strings
+const header = "Welcome to StudyBuddy, the smarter way to study!";
+const vision_statement_1 =
+  "StudyBuddy is a mobile application that provides an effective and entertaining way of reviewing material.";
+const vision_statement_2 =
+  "Unlike Quizlet, Chegg, and other leading study apps our product is fully customizable and allows users to follow study guides tailored to their learning style.";
+const footerText = "Feel free to reach out!";
 
-const features = {
-  total: 2,
-  icons: [
-    require("./assets/notes.png"),
-    require("./assets/pencil_book.png"),
-    require("./assets/cards.png"),
-    require("./assets/test.png"),
-    require("./assets/time_test.png"),
-    require("./assets/open_book.png"),
-    require("./assets/certificate.png"),
-    require("./assets/bell_plain.png"),
-  ],
-};
+export default function App() {
+  console.clear();
+  console.log("[############################]\n");
+  console.log("    StudyBuddy loading...\n");
+  console.log("            [ % ]\n");
 
-const footer_icons = {
-  links: [
-    () => {
-      console.log("...footer icon 1 clicked");
-    },
-    () => {
-      console.log("...footer icon 2 clicked");
-    },
-    () => {
-      console.log("...footer icon 3 clicked");
-    },
-  ],
-  logos: [
-    require("./assets/instagram.png"),
-    require("./assets/linkedin.png"),
-    require("./assets/github.png"),
-  ],
-};
-
-export default function App(paths) {
-  console.log("rendering...");
-
-  //++++++++++++++++hooks+++++++++++
+  //++++++++++++++++hooks
   const [showLogin, setLoginDisplay] = useState(false);
   const [submit, onSubmit] = useState(false);
-  const [dimensions, setDimensions] = useState({ window, screen });
-  const credentials = {
-    user: "null",
-    password: "null",
-    profilePic: require("./assets/stock_man.jpg"),
-  };
+  const [darkMode, setdarkMode] = useState(false);
 
-  //++++++++++++++++strings+++++++++
-  const header = "Welcome to StudyBuddy, the smarter way to study!";
-  const vision_statement_1 =
-    "StudyBuddy is a mobile application that provides an effective and entertaining way of reviewing material.";
-  const vision_statement_2 =
-    "Unlike Quizlet, Chegg, and other leading study apps our product is fully customizable and allows users to follow study guides tailored to their learning style.";
-  const footerText = "yeet";
-
-  const logo = require("./assets/logo.png");
-  const logo_alt = require("./assets/logo_alt.png");
-  const acc_icon = require("./assets/account_icon.png");
-  const settings_icon = require("./assets/settings_icon.png");
-  const background = require("./assets/bg.png");
-
-  //++++++++++++++++handlers++++++++
-
-  const handlePress = () => {
-    console.log("...icon clicked");
-  };
-
+  //++++++++++++++++handlers
   const handleButton = () => {
     setLoginDisplay(!showLogin);
   };
 
   const handleSubmit = (user, pass) => {
-    console.log("...user logged in");
+    console.log("[############################]\n");
+    console.log("...a user has logged in\n");
     credentials.user = user;
     credentials.password = pass;
     console.log("user--------->" + credentials.user);
-    console.log("password--------->" + credentials.password);
+    console.log("password--------->" + credentials.password + "\n");
 
     onSubmit(true);
   };
 
   const handleLogout = () => {
     onSubmit(false);
+    console.log("[############################]\n");
+    console.log("...user has logged out\n");
     console.log("...logged out");
     credentials.user = "null";
     credentials.password = "null";
-  };
-
-  const handleAccount = () => {
-    console.log("...accounts clicked");
   };
 
   const handleSettings = () => {
     console.log("...settings clicked");
   };
 
-  useEffect(() => {
-    const subscription = Dimensions.addEventListener(
-      "change",
-      ({ window, screen }) => {
-        setDimensions({ window, screen });
-      }
+  const handleDarkMode = () => {
+    console.log(
+      "\n...loading UI in " + (darkMode ? "[LIGHT]" : "[DARK]") + " mode\n"
     );
 
-    SCREEN_WIDTH = screen.width;
-    SCREEN_HEIGHT = screen.height;
-    return () => subscription?.remove();
-  });
+    setdarkMode(!darkMode);
+  };
 
-  //++++++++++++++++jsx+++++++++++++
+  console.log("...content rendering\n");
+
+  //++++++++++++++++jsx
   return (
-    <View style={{ flex: 1, backgroundColor: "white" }}>
+    <View style={{ flex: 1 }}>
       <ImageBackground
-        source={background}
-        resizeMode="cover"
+        source={darkMode ? background_alt : background}
+        resizedarkMode="cover"
         style={styles.background}
       >
         <ScrollView
           contentContainerStyle={[
             styles.container,
             {
-              width: dimensions.screen.width,
+              width: "100%",
               height: "auto",
             },
           ]}
@@ -159,30 +115,49 @@ export default function App(paths) {
         >
           <Nav
             show={true}
-            account={acc_icon}
+            darkModeIcon={darkMode ? dark_mode_icon : light_mode_icon}
             settings={settings_icon}
-            onAccount={handleAccount}
+            onDarkMode={handleDarkMode}
             onSettings={handleSettings}
           />
-          <Image style={styles.logo} source={logo_alt} />
-          <View style={styles.main}>
+          <Image style={styles.logo} source={darkMode ? logo_alt : logo} />
+          <View
+            style={[
+              styles.main,
+              {
+                backgroundColor: darkMode
+                  ? "rgba(0, 0, 0, 0.9)"
+                  : "rgba(250, 250, 250, 0.9)",
+
+                borderColor: darkMode ? "white" : "black",
+              },
+            ]}
+          >
             <Header
               show={!showLogin}
               text={header}
-              color={"black"}
+              color={darkMode ? "white" : "black"}
               size={"24pt"}
             />
-            <Login show={showLogin} submit={submit} onSubmit={handleSubmit} />
+            <Login
+              show={showLogin}
+              submit={submit}
+              onSubmit={handleSubmit}
+              color={darkMode ? "white" : "black"}
+              color_text={darkMode ? "black" : "white"}
+            />
             <Logout
               show={showLogin}
               submit={submit}
               onClick={handleLogout}
               userPicture={credentials.profilePic}
+              color={darkMode ? "white" : "black"}
+              color_text={darkMode ? "black" : "white"}
             />
             <Carousel
               show={!showLogin}
               pages={features}
-              onPress={handlePress}
+              carousel_links={carousel_funcs}
               color={"rgba(200, 0, 0, 0.8)"}
               title={"What Do We Offer?"}
             />
@@ -195,15 +170,9 @@ export default function App(paths) {
             <Content
               show={showLogin && !submit}
               text={vision_statement_1}
-              color={"gray"}
+              color={darkMode ? "white" : "black"}
               size={"16pt"}
             />
-            <Header
-              show={!showLogin}
-              text={"Learn More"}
-              color="black"
-              size={"12pt"}
-            ></Header>
             <Image
               style={[
                 styles.down_arrow,
@@ -211,18 +180,18 @@ export default function App(paths) {
               ]}
               source={require("./assets/down-arrow.png")}
             />
-            <Carousel
-              show={!showLogin}
-              pages={features}
-              onPress={handlePress}
-              color={"rgba(0, 0, 200, 0.8)"}
-              title={"Why Choose Us?"}
-            />
             <Header
               show={!showLogin}
               text={vision_statement_2}
-              color={"black"}
+              color={darkMode ? "white" : "black"}
               size={"16pt"}
+            />
+            <Carousel
+              show={!showLogin}
+              pages={features}
+              carousel_links={carousel_funcs}
+              color={"rgba(0, 0, 200, 0.8)"}
+              title={"Why Choose Us?"}
             />
           </View>
           <Footer
@@ -231,6 +200,7 @@ export default function App(paths) {
             color={"rgba(250, 150, 0, 0.8)"}
             clickable_logos={footer_icons.logos}
             social_links={footer_icons.links}
+            color_br={darkMode ? "white" : "black"}
           />
           <StatusBar style="auto" />
         </ScrollView>
@@ -239,7 +209,7 @@ export default function App(paths) {
   );
 }
 
-//++++++++++++++++styles++++++++++
+//++++++++++++++++styles
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 50,
@@ -248,17 +218,17 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   main: {
-    backgroundColor: "rgba(200, 200, 200, 0.8)",
     width: "95%",
     borderRadius: 20,
+    borderWidth: 5,
     alignItems: "center",
     marginVertical: 10,
     paddingVertical: 10,
   },
   down_arrow: {
-    height: 10,
-    width: 20,
-    margin: 10,
+    height: 30,
+    width: 30,
+    margin: 15,
   },
   logo: {
     width: "80%",

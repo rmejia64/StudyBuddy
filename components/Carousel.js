@@ -15,15 +15,15 @@ import { React, useState } from "react";
 import { Header } from "./Header";
 
 export function Carousel(props) {
-  const { show, pages, onPress, color, title } = props;
+  const { show, pages, carousel_links, color, title } = props;
 
   //++++++++++++++++hooks+++++++++++
   const total = pages.total;
   const [page, changePage] = useState(0);
 
   if (show) {
-    console.log("...loaded carousel");
-    console.log("------------>carousel_page:" + page);
+    console.log("...rendered [" + title + "] carousel");
+    console.log("page------->" + page + "\n");
   }
 
   //++++++++++++++++jsx+++++++++++++
@@ -43,16 +43,16 @@ export function Carousel(props) {
           },
         ]}
       >
-        <Pressable onPress={onPress}>
+        <Pressable onPress={carousel_links[0]}>
           <Image style={styles.img} source={pages.icons[0]} />
         </Pressable>
-        <Pressable onPress={onPress}>
+        <Pressable onPress={carousel_links[1]}>
           <Image style={styles.img} source={pages.icons[1]} />
         </Pressable>
-        <Pressable onPress={onPress}>
+        <Pressable onPress={carousel_links[2]}>
           <Image style={styles.img} source={pages.icons[2]} />
         </Pressable>
-        <Pressable onPress={onPress}>
+        <Pressable onPress={carousel_links[3]}>
           <Image style={styles.img} source={pages.icons[3]} />
         </Pressable>
       </View>
@@ -64,16 +64,16 @@ export function Carousel(props) {
           },
         ]}
       >
-        <Pressable onPress={onPress}>
+        <Pressable onPress={carousel_links[4]}>
           <Image style={styles.img} source={pages.icons[4]} />
         </Pressable>
-        <Pressable onPress={onPress}>
+        <Pressable onPress={carousel_links[5]}>
           <Image style={styles.img} source={pages.icons[5]} />
         </Pressable>
-        <Pressable onPress={onPress}>
+        <Pressable onPress={carousel_links[6]}>
           <Image style={styles.img} source={pages.icons[6]} />
         </Pressable>
-        <Pressable onPress={onPress}>
+        <Pressable onPress={carousel_links[7]}>
           <Image style={styles.img} source={pages.icons[7]} />
         </Pressable>
       </View>
